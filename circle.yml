@@ -13,6 +13,8 @@ jobs:
     environment:
       # Customize the JVM maximum heap limit
       MAVEN_OPTS: -Xmx3200m
+    dependencies:
+      override: - mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline -s settings.xml     
     steps:
       - checkout
       # Download and cache dependencies
@@ -20,7 +22,7 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "pom.xml" }}
           - v1-dependencies-
-      - run: mvn --fail-never dependency:go-offline -s settings.xml || true
+      #- run: mvn --fail-never dependency:go-offline -s settings.xml || true
       - save_cache:
           paths:
             - ~/.m2
