@@ -2,8 +2,8 @@
   <servers>
     <server>
       <id>MuleRepository</id>
-      <username>${MULE_USER}</username>
-      <password>${MULE_AUTH}</password>
+      <username>muletraining.nexus</username>
+      <password>MuleTraining</password>
     </server>
    </servers>
   <pluginGroups>
