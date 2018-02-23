@@ -19,7 +19,6 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "pom.xml" }}
-          # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run: mvn --fail-never dependency:go-offline -s settings.xml || true
       - save_cache:
@@ -27,4 +26,4 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
       # run tests!
-      - run: mvn test
+      - run: mvn test -s settings.xml
