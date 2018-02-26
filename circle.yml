@@ -20,11 +20,10 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "pom.xml" }}
           - v1-dependencies-
+      - run: mvn test -s settings.xml
       - run: mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline -s settings.xml
       - run: mvn clean package mule:deploy -s settings.xml
       - save_cache:
           paths:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
-      # run tests!
-      - run: mvn test -s settings.xml
