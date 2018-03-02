@@ -17,7 +17,7 @@ jobs:
       - run: mvn test -s settings.xml
 #      - run: mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline -s settings.xml
       - run: mvn clean package -s settings.xml
-      - run: mvn mule:deploy -DworkerType=12 -Denvironment=$ENVIRONMENT -DworkerType=Micro -Denvironment=Sandbox -Dredeploy=true -DmuleVersion=3.9.0 -DdeploymentType=cloudhub -s settings.xml
+      - run: mvn mule:deploy -DworkerType=12 -Denvironment=$ENVIRONMENT -DworkerType=Micro -Denvironment=Sandbox -Dredeploy=true -DmuleVersion=3.9.0 -s settings.xml
       - save_cache:
           paths:
             - ~/.m2
