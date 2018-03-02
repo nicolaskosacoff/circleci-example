@@ -83,13 +83,8 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>2.2.1</version>
 				<configuration>
-					<deploymentType>cloudhub</deploymentType>
-					<muleVersion>3.9.0</muleVersion>
 					<username>nicolaskosacoff</username>
 					<password>${PASSWORD}</password>
-					<redeploy>true</redeploy>
-					<environment>Sandbox</environment>
-					<workerType>Micro</workerType>
 				</configuration>
 				<executions>
 					<execution>

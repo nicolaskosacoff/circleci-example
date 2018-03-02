@@ -3,15 +3,8 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:8-jdk
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
     working_directory: ~/repo
     environment:
-      # Customize the JVM maximum heap limit
       MAVEN_OPTS: -Xmx3200m     
     steps:
       - checkout
@@ -20,9 +13,11 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "pom.xml" }}
           - v1-dependencies-
+      - run: mvn clean
       - run: mvn test -s settings.xml
-      - run: mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline -s settings.xml
-      - run: mvn clean package mule:deploy -s settings.xml
+#      - run: mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline -s settings.xml
+      - run: mvn clean package
+      - run: mvn mule:deploy -DworkerType=12 -Denvironment=$ENVIRONMENT -DworkerType=Micro -Denvironment=Sandbox -Dredeploy=true -DmuleVersion=3.9.0 -DdeploymentType=cloudhub -s settings.xml
       - save_cache:
           paths:
             - ~/.m2
