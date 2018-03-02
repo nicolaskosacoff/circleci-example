@@ -84,8 +84,12 @@
 				<version>2.2.1</version>
 				<configuration>
 					<deploymentType>cloudhub</deploymentType>
-					<username>nicolaskosacoff</username>
-					<password>${PASSWORD}</password>
+					<muleVersion>${muleVersion}</muleVersion>
+					<username>${username}</username>
+					<password>${password}</password>
+					<redeploy>${redeploy}</redeploy>
+					<environment>${environment}</environment>
+					<workerType>${workerType}</workerType>
 				</configuration>
 				<executions>
 					<execution>
