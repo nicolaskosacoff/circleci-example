@@ -20,10 +20,11 @@ jobs:
       - run: mvn clean package -s settings.xml
       - run: 
           case $CIRCLE_BRANCH in 
-            'master') environment='Production';;
+            'master') environment='Sandbox';;
             'develop') environment='Sandbox';;
           esac  
-      - run: echo "$environment"
+          | echo CORRE ESTO "$environment
+      - run: echo ambiente es: "$environment"
       - run: mvn mule:deploy -Dworkers=0.1 -DworkerType=Micro -Denvironment=$environment -Dredeploy=true -DmuleVersion=3.9.0 -s settings.xml
       - save_cache:
           paths:
