@@ -23,7 +23,6 @@ jobs:
             master) echo "ES MASTER";;
             develop) echo "ES DEVELOP";;
           esac  
-          | echo AMBIENTE ES $environment;
       - run: echo $environment
       - run: mvn mule:deploy -Dworkers=0.1 -DworkerType=Micro -Denvironment=$environment -Dredeploy=true -DmuleVersion=3.9.0 -s settings.xml
       - save_cache:
