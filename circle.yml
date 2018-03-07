@@ -14,14 +14,14 @@ jobs:
           - v1-dependencies-{{ checksum "pom.xml" }}
           - v1-dependencies-
       - run: mvn clean
-      - run: if [$CIRCLE_BRANCH=='master']; then echo "true"; else echo "false"; fi
-      - run: if [$CIRCLE_BRANCH=="master"]; then echo "true"; else echo "false"; fi
+      - run: if [ $CIRCLE_BRANCH == 'master' ]; then echo "true"; else echo "false"; fi
+      - run: if [ $CIRCLE_BRANCH == "master" ]; then echo "true"; else echo "false"; fi
       - run: mvn test -s settings.xml
       - run: mvn clean package -s settings.xml
       - run: 
           case $CIRCLE_BRANCH in 
-            "master") environment='Production';;
-            "develop") environment='Sandbox';;
+            'master') environment='Production';;
+            'develop') environment='Sandbox';;
           esac  
           | echo "$environment"
           | mvn mule:deploy -Dworkers=0.1 -DworkerType=Micro -Denvironment=$environment -Dredeploy=true -DmuleVersion=3.9.0 -s settings.xml
