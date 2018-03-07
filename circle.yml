@@ -19,6 +19,7 @@ jobs:
 #      - run: mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline -s settings.xml
       - run: mvn clean package -s settings.xml
       - run: 
+          echo "$CIRCLE_BRANCH" | 
           case $CIRCLE_BRANCH in 
             "master") environment='Production';;
             "develop") environment='Sandbox';;
