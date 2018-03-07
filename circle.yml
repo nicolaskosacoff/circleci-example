@@ -14,12 +14,11 @@ jobs:
           - v1-dependencies-{{ checksum "pom.xml" }}
           - v1-dependencies-
       - run: mvn clean
-      - run: echo $CIRCLE_BRANCH
+      - run: echo $CIRCLE_BRANCH=='master' 
+      - run: echo $CIRCLE_BRANCH=="master" 
       - run: mvn test -s settings.xml
-#      - run: mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline -s settings.xml
       - run: mvn clean package -s settings.xml
       - run: 
-          echo "$CIRCLE_BRANCH" | 
           case $CIRCLE_BRANCH in 
             "master") environment='Production';;
             "develop") environment='Sandbox';;
