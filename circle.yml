@@ -22,8 +22,7 @@ jobs:
           case $CIRCLE_BRANCH in 
             'master') export environment='Sandbox';;
             'develop') export environment='Sandbox';;
-          esac; echo environment
-      - run: echo $environment
+          esac; echo $environment
       - run: mvn mule:deploy -Dworkers=0.1 -DworkerType=Micro -Denvironment=$environment -Dredeploy=true -DmuleVersion=3.9.0 -s settings.xml
       - save_cache:
           paths:
