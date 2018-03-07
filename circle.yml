@@ -20,8 +20,8 @@ jobs:
       - run: mvn clean package -s settings.xml
       - run: 
           case $CIRCLE_BRANCH in 
-            'master') environment='Sandbox';;
-            'develop') environment='Sandbox';;
+            'master') export environment='Sandbox';;
+            'develop') export environment='Sandbox';;
           esac  
           | echo CORRE ESTO $environment
       - run: echo $environment
