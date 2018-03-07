@@ -19,9 +19,9 @@ jobs:
 #      - run: mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline -s settings.xml
       - run: mvn clean package -s settings.xml
       - run: 
-          case [$CIRCLE_BRANCH] in 
-            'master') let environment='Production'
-            'develop') let environment='Sandbox'
+          case $CIRCLE_BRANCH in 
+            "master") environment='Production';;
+            "develop") environment='Sandbox';;
           esac  
           echo $environment
           | mvn mule:deploy -Dworkers=0.1 -DworkerType=Micro -Denvironment=$environment -Dredeploy=true -DmuleVersion=3.9.0 -s settings.xml
