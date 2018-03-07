@@ -23,7 +23,7 @@ jobs:
             'master') environment='Sandbox';;
             'develop') environment='Sandbox';;
           esac  
-          | echo CORRE ESTO "$environment
+          | echo CORRE ESTO $environment
       - run: echo $environment
       - run: mvn mule:deploy -Dworkers=0.1 -DworkerType=Micro -Denvironment=$environment -Dredeploy=true -DmuleVersion=3.9.0 -s settings.xml
       - save_cache:
